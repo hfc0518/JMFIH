@@ -31,10 +31,10 @@ ind_NT <- which(colnames(counts) %like% "NT") #NT abbv for control group
 ind_TM <- which(colnames(counts) %like% "LPS") #TM abbv for treatment group 
 counts_ann <- counts[,c(1,ind_NT,ind_TM)] #our annotated counts table contains gene symbols, NT and TM groups
 print(colnames(counts_ann)) #check again the colnames
-write.table(counts_ann, "annotatedcounts_NT_LPS_james_20190513.txt", sep = "\t", row.names = F) #save file
+write.table(counts_ann, "annotatedcounts_NT_LPS.txt", sep = "\t", row.names = F) #save file
 
 ##### check between-sample distribution of the annotated counts #####
-x <- read.table("annotatedcounts_NT_LPS_james_20190513.txt", header=T, sep= "\t", row.names = 1)
+x <- read.table("annotatedcounts_NT_LPS.txt", header=T, sep= "\t", row.names = 1)
 colnames(x)
 head(rownames(x))
 logx <- log2(x + 1)
@@ -52,7 +52,7 @@ ggplot(df,aes(x = value, colour = samples, fill = samples))+
   theme(legend.position = "top") + xlab(expression(log[2](count + 1)))
 
 #### prepare data for Normalization by trimmed mean of M values (TMM) ####
-x <- read.table("annotatedcounts_NT_LPS_james_20190513.txt", header=T, sep= "\t", row.names = 1)
+x <- read.table("annotatedcounts_NT_LPS.txt", header=T, sep= "\t", row.names = 1)
 #replace Hif1an.Hif1an with KO annotation
 colnames(x) <- gsub("Hif1an.Hif1an","KO",colnames(x))
 #subset selected samples from the same condition, i.e., LPS, using %like% from data.table library
