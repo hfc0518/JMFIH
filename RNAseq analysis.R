@@ -9,7 +9,7 @@ library(dplyr)
 library(ggplot2)
 library(ggrepel)
 library(pheatmap)
-#### load functions ####
+#### load function ####
 save_pheatmap <- function(x, filename) {
   stopifnot(!missing(x))
   stopifnot(!missing(filename))
